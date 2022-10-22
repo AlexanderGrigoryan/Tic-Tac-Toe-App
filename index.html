@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="./img/favicon-32x32.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+</head>
+<body>
+    <main class="wrapper">
+        <section class="main__page">
+            <header class="header">
+                <img class="header__icon" src="./img/icon-x.svg" alt="">
+                <img class="header__icon" src="./img/icon-o.svg" alt="">
+            </header>
+            <div class="player__pick">
+                <h1 class="pick__title">PICK PLAYER 1’S MARK</h1>
+                <div class="pick__action">
+                    <button class="pick__action-btn" id="pick__btn-x">
+                        <img class="pick__action-icon"  src="./img/icon-x32.svg" alt="">
+                    </button>
+                    <button class="pick__action-btn" id="pick__btn-o">
+                        <img class="pick__action-icon" src="./img/icon-o32.svg" alt="">
+                    </button>
+                </div>
+                <p class="pick__text">REMEMBER : X GOES FIRST</p>
+            </div>
+            <div class="new__game-buttons">
+                <button class="new__game" id="cpu__btn">NEW GAME (VS CPU)</button>
+                <button class="new__game" id="player__btn">NEW GAME  (VS PLAYER)</button>
+            </div>
+        </section>
+
+        <section class="active__game">
+            <header class="game__header">
+                <div class="game__header-logo">
+                    <img class="logo__img" src="./img/icon-x.svg" alt="">
+                    <img class="logo__img" src="./img/icon-o.svg" alt="">
+                </div>
+                <div class="game__turn">
+                    <img class="turn__default" src="./img/icon-x16.svg" alt="">
+                    <p class="game__turn-text">TURN</p>
+                </div>
+                <button class="game__return">
+                    <img class="return__logo" src="./img/icon-restart.svg" alt="">
+                </button>
+            </header>
+            <div class="game__cell">
+                <button class="cell__body"></button>
+                <button class="cell__body"></button>
+                <button class="cell__body"></button>
+                <button class="cell__body"></button>
+                <button class="cell__body"></button>
+                <button class="cell__body"></button>
+                <button class="cell__body"></button>
+                <button class="cell__body"></button>
+                <button class="cell__body"></button>
+                <div class="cell__results" id="results__p1">
+                    <p class="cell__results-text">x (p1)</p>
+                    <p class="cell__results-score" id="p1__score">0</p>
+                </div>
+                <div class="cell__results" id="results__tie">
+                    <p class="cell__results-text">Ties</p>
+                    <p class="cell__results-score" id="tie__score">0</p>
+                </div>
+                <div class="cell__results" id="results__p2">
+                    <p class="cell__results-text">o (p2)</p>
+                    <p class="cell__results-score" id="p2__score">0</p>
+                </div>
+            </div>
+                <!-- PopUp for X wins  -->
+                <div class="x__wins-background">              
+                    <div class="x__wins">
+                        <p class="x__wins-text">Player 1 wins!</p>
+                        <div class="x__wins-block">
+                            <img src="./img/icon-x28.svg" alt="">
+                            <h2 class="x__wins-title">Takes the round</h2>
+                        </div>
+                        <div class="x__wins-buttons">
+                            <button class="x__quit">Quit</button>
+                            <button class="x__next-round">Next Round</button>
+                        </div>
+                    </div>
+                </div>  
+                <!-- PopUp for O wins -->
+                <div class="o__wins-background">              
+                    <div class="o__wins">
+                        <p class="o__wins-text">Player 1 wins!</p>
+                        <div class="o__wins-block">
+                            <img src="./img/icon-o28.svg" alt="">
+                            <h2 class="o__wins-title">Takes the round</h2>
+                        </div>
+                        <div class="o__wins-buttons">
+                            <button class="o__quit">Quit</button>
+                            <button class="o__next-round">Next Round</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- PopUp for ties result -->
+                <div class="tie__bcg">
+                    <div class="tie__content">
+                        <h2 class="tie__title">Round tied</h2>
+                        <div class="tie__buttons">
+                            <button class="tie__quit">Quit</button>
+                            <button class="tie__next-round">Next round</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- PopUp for game restart -->
+                <div class="restart__bcg">
+                    <div class="restart__content">
+                        <h2 class="restart__title">Restart game?</h2>
+                        <div class="restart__buttons">
+                            <button class="restart__cancel">No, cancel</button>
+                            <button class="restart__confirm">Yes, restart</button>
+                        </div>
+                    </div>
+                </div>
+        </section>
+    </main>
+    <script src="./js/script.js"></script>
+</body>
+</html>

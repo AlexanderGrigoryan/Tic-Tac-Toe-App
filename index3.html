@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="./img/favicon-32x32.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+</head>
+<body>
+    <main class="wrapper">
+        <section class="main__page">
+            <header class="header">
+                <img class="header__icon" src="./img/icon-x.svg" alt="">
+                <img class="header__icon" src="./img/icon-o.svg" alt="">
+            </header>
+            <div class="player__pick">
+                <h1 class="pick__title">PICK PLAYER 1’S MARK</h1>
+                <div class="pick__action">
+                    <button class="pick__action-btn" id="pick__btn-x">
+                        <img class="pick__action-icon"  src="./img/icon-x32.svg" alt="">
+                        <!-- <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32px" height="32px" 
+                            viewBox="0 0 32 32" version="1.1"><g id="surface1"><path stroke="none" fill-rule="evenodd"
+                            fill="#A8A8A8" fill-opacity="1" d="M 7.5 0.574219 L 16 9.074219 L 
+                            24.5 0.574219 C 25.085938 -0.0117188 26.035156 -0.0117188 26.621094 0.574219 L 31.425781 5.378906 C 
+                            32.011719 5.964844 32.011719 6.914062 31.425781 7.5 L 22.925781 16 L 31.425781 24.5 C 32.011719 
+                            25.085938 32.011719 26.035156 31.425781 26.621094 L 26.621094 31.425781 C 26.035156 32.011719 
+                            25.085938 32.011719 24.5 31.425781 L 16 22.925781 L 7.5 31.425781 C 6.914062 32.011719 5.964844 
+                            32.011719 5.378906 31.425781 L 0.574219 26.621094 C -0.0117188 26.035156 -0.0117188 25.085938 
+                            0.574219 24.5 L 9.074219 16 L 0.574219 7.5 C -0.0117188 6.914062 -0.0117188 5.964844 0.574219 
+                            5.378906 L 5.378906 0.574219 C 5.964844 -0.0117188 6.914062 -0.0117188 7.5 0.574219 Z M 7.5 0.574219"/></g>
+                        </svg> -->
+                    </button>
+                    <button class="pick__action-btn" id="pick__btn-o">
+                        <img class="pick__action-icon" src="./img/icon-o32.svg" alt="">
+                        <!-- <svg class="pick__action-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32px" height="32px" 
+                            viewBox="0 0 32 32" version="1.1"><g id="surface1"><path stroke="none" fill-rule="evenodd"
+                                fill="#A8A8A8" fill-opacity="1" d="M 16 0 C 24.835938 0 32 7.164062 
+                            32 16 C 32 24.835938 24.835938 32 16 32 C 7.164062 32 0 24.835938 0 16 C 0 7.164062 7.164062 0 16 
+                            0 Z M 16 9.480469 C 12.398438 9.480469 9.480469 12.398438 9.480469 16 C 9.480469 19.601562 12.398438 22.519531 
+                            16 22.519531 C 19.601562 22.519531 22.519531 19.601562 22.519531 16 C 22.519531 12.398438 19.601562 9.480469 
+                            16 9.480469 Z M 16 9.480469 "/></g>
+                        </svg> -->
+                    </button>
+                </div>
+                <p class="pick__text">REMEMBER : X GOES FIRST</p>
+            </div>
+            <div class="new__game-buttons">
+                <button class="new__game" id="cpu__btn">NEW GAME (VS CPU)</button>
+                <button class="new__game" id="player__btn">NEW GAME  (VS PLAYER)</button>
+            </div>
+        </section>
+
+        <section class="active__game">
+            <header class="game__header">
+                <div class="game__header-logo">
+                    <img class="logo__img" src="./img/icon-x.svg" alt="">
+                    <img class="logo__img" src="./img/icon-o.svg" alt="">
+                </div>
+                <button class="game__turn">
+                    <!-- <svg class="change__turn" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" 
+                        viewBox="0 0 16 16" version="1.1"><g id="surface1"><path stroke="none" fill-rule="evenodd"
+                            fill="#A8A8A8" fill-opacity="1" d="M 3.75 0.285156 L 8 4.535156 L 12.25 0.285156 
+                        C 12.542969 -0.0078125 13.015625 -0.0078125 13.308594 0.285156 L 15.714844 2.691406 C 16.007812 2.984375 16.007812 
+                        3.457031 15.714844 3.75 L 11.464844 8 L 15.714844 12.25 C 16.007812 12.542969 16.007812 13.015625 15.714844 13.308594 
+                        L 13.308594 15.714844 C 13.015625 16.007812 12.542969 16.007812 12.25 15.714844 L 8 11.464844 L 3.75 15.714844 C 3.457031 
+                        16.007812 2.984375 16.007812 2.691406 15.714844 L 0.285156 13.308594 C -0.0078125 13.015625 -0.0078125 12.542969 0.285156 
+                        12.25 L 4.535156 8 L 0.285156 3.75 C -0.0078125 3.457031 -0.0078125 2.984375 0.285156 2.691406 L 2.691406 0.285156 C 2.984375 
+                        -0.0078125 3.457031 -0.0078125 3.75 0.285156 Z M 3.75 0.285156 "/></g>
+                    </svg> -->
+                    <p class="game__turn-text">TURN</p>
+                </button>
+                <button class="game__return">
+                    <img class="return__logo" src="./img/icon-restart.svg" alt="">
+                </button>
+            </header>
+            <!-- icons for game stage -->
+                <!-- <img class="x__for-game" src="./img/icon-x40.svg" alt="">
+                <img class="o__for-game" src="./img/icon-o40.svg" alt=""> -->
+            <!-- Icons ended here -->
+            <div class="game__cell">
+                <button class="cell__body"></button>
+                <button class="cell__body"></button>
+                <button class="cell__body"></button>
+                <button class="cell__body"></button>
+                <button class="cell__body"></button>
+                <button class="cell__body"></button>
+                <button class="cell__body"></button>
+                <button class="cell__body"></button>
+                <button class="cell__body"></button>
+                <div class="cell__results results__blue">
+                    <p class="cell__results-text">x (you)</p>
+                    <p class="cell__results-score">0</p>
+                </div>
+                <div class="cell__results results__grey">
+                    <p class="cell__results-text">Ties</p>
+                    <p class="cell__results-score">0</p>
+                </div>
+                <div class="cell__results results__yellow">
+                    <p class="cell__results-text">o (cpu)</p>
+                    <p class="cell__results-score">0</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="./js/script.js"></script>
+</body>
+</html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./css/style.css">
@@ -20,7 +21,7 @@
                 <h1 class="pick__title">PICK PLAYER 1’S MARK</h1>
                 <div class="pick__action">
                     <button class="pick__action-btn" id="pick__btn-x">
-                        <img class="pick__action-icon"  src="./img/icon-x32.svg" alt="">
+                        <img class="pick__action-icon" src="./img/icon-x32.svg" alt="">
                     </button>
                     <button class="pick__action-btn" id="pick__btn-o">
                         <img class="pick__action-icon" src="./img/icon-o32.svg" alt="">
@@ -30,10 +31,9 @@
             </div>
             <div class="new__game-buttons">
                 <button class="new__game" id="cpu__btn">NEW GAME (VS CPU)</button>
-                <button class="new__game" id="player__btn">NEW GAME  (VS PLAYER)</button>
+                <button class="new__game" id="player__btn">NEW GAME (VS PLAYER)</button>
             </div>
         </section>
-
         <section class="active__game">
             <header class="game__header">
                 <div class="game__header-logo">
@@ -71,56 +71,57 @@
                     <p class="cell__results-score" id="p2__score">0</p>
                 </div>
             </div>
-                <!-- PopUp for X wins  -->
-                <div class="x__wins-background">              
-                    <div class="x__wins">
-                        <p class="x__wins-text">Player 1 wins!</p>
-                        <div class="x__wins-block">
-                            <img src="./img/icon-x28.svg" alt="">
-                            <h2 class="x__wins-title">Takes the round</h2>
-                        </div>
-                        <div class="x__wins-buttons">
-                            <button class="quit">Quit</button>
-                            <button class="next__round">Next Round</button>
-                        </div>
+            <!-- PopUp for X wins  -->
+            <div class="x__wins-background">
+                <div class="x__wins">
+                    <p class="x__wins-text">Player 1 wins!</p>
+                    <div class="x__wins-block">
+                        <img src="./img/icon-x28.svg" alt="">
+                        <h2 class="x__wins-title">Takes the round</h2>
                     </div>
-                </div>  
-                <!-- PopUp for O wins -->
-                <div class="o__wins-background">              
-                    <div class="o__wins">
-                        <p class="o__wins-text">Player 1 wins!</p>
-                        <div class="o__wins-block">
-                            <img src="./img/icon-o28.svg" alt="">
-                            <h2 class="o__wins-title">Takes the round</h2>
-                        </div>
-                        <div class="o__wins-buttons">
-                            <button class="quit">Quit</button>
-                            <button class="next__round">Next Round</button>
-                        </div>
+                    <div class="x__wins-buttons">
+                        <button class="quit">Quit</button>
+                        <button class="next__round">Next Round</button>
                     </div>
                 </div>
-                <!-- PopUp for ties result -->
-                <div class="tie__bcg">
-                    <div class="tie__content">
-                        <h2 class="tie__title">Round tied</h2>
-                        <div class="tie__buttons">
-                            <button class="quit">Quit</button>
-                            <button class="next__round">Next Round</button>
-                        </div>
+            </div>
+            <!-- PopUp for O wins -->
+            <div class="o__wins-background">
+                <div class="o__wins">
+                    <p class="o__wins-text">Player 1 wins!</p>
+                    <div class="o__wins-block">
+                        <img src="./img/icon-o28.svg" alt="">
+                        <h2 class="o__wins-title">Takes the round</h2>
+                    </div>
+                    <div class="o__wins-buttons">
+                        <button class="quit">Quit</button>
+                        <button class="next__round">Next Round</button>
                     </div>
                 </div>
-                <!-- PopUp for game restart -->
-                <div class="restart__bcg">
-                    <div class="restart__content">
-                        <h2 class="restart__title">Restart game?</h2>
-                        <div class="restart__buttons">
-                            <button class="restart__cancel">No, cancel</button>
-                            <button class="restart__confirm">Yes, restart</button>
-                        </div>
+            </div>
+            <!-- PopUp for ties result -->
+            <div class="tie__bcg">
+                <div class="tie__content">
+                    <h2 class="tie__title">Round tied</h2>
+                    <div class="tie__buttons">
+                        <button class="quit">Quit</button>
+                        <button class="next__round">Next Round</button>
                     </div>
                 </div>
+            </div>
+            <!-- PopUp for game restart -->
+            <div class="restart__bcg">
+                <div class="restart__content">
+                    <h2 class="restart__title">Restart game?</h2>
+                    <div class="restart__buttons">
+                        <button class="restart__cancel">No, cancel</button>
+                        <button class="restart__confirm">Yes, restart</button>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
     <script src="./js/script.js"></script>
 </body>
+
 </html>

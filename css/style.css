@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     border: 0;
@@ -55,7 +55,7 @@ body {
     text-align: center;
     color: #A8BFC9;
     padding-top: 24px;
-} 
+}
 
 .pick__action {
     height: 72px;
@@ -66,7 +66,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-} 
+}
 
 .pick__action-btn {
     height: 54px;
@@ -127,8 +127,8 @@ body {
 }
 
 #player__btn {
-    background: #31C3BD; 
-    box-shadow: inset 0px -8px 0px #118C87;  
+    background: #31C3BD;
+    box-shadow: inset 0px -8px 0px #118C87;
 }
 
 
@@ -145,17 +145,17 @@ body {
     align-items: center;
     padding-top: 24px;
     margin-bottom: 64px;
-} 
+}
 
 .game__header-logo {
     display: flex;
     column-gap: 7.74px;
-} 
+}
 
 .logo__img {
     width: 32px;
     height: 32px;
-} 
+}
 
 .turn__default {
     display: flex;
@@ -176,7 +176,7 @@ body {
 .game__turn-img {
     width: 16px;
     height: 16px;
-} 
+}
 
 .game__turn-text {
     font-size: 14px;
@@ -185,7 +185,7 @@ body {
     letter-spacing: 0.875px;
     text-align: center;
     color: #A8BFC9;
-} 
+}
 
 .game__return {
     height: 40px;
@@ -193,7 +193,7 @@ body {
     border-radius: 5px;
     box-shadow: inset 0px -4px 0px #6B8997;
     background: #A8BFC9;
-} 
+}
 
 .return__logo {
     width: 15.38px;
@@ -215,7 +215,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-} 
+}
 
 .x__icon-hover:hover {
     background: url(../img/icon-x-outline.svg) no-repeat center;
@@ -243,7 +243,7 @@ body {
     letter-spacing: 0.75px;
     text-align: center;
     color: #1A2A33;
-} 
+}
 
 .cell__results-score {
     font-size: 20px;
@@ -253,19 +253,19 @@ body {
     letter-spacing: 1.25px;
     text-align: center;
     color: #1A2A33;
-} 
+}
 
 #results__p1 {
     background: #31C3BD;
-} 
+}
 
 #results__p2 {
-   background: #F2B137; 
-} 
+    background: #F2B137;
+}
 
 #results__tie {
     background: #A8BFC9;
-} 
+}
 
 .x__wins-background {
     width: 100%;
@@ -275,7 +275,7 @@ body {
     top: 0;
     left: 0;
     display: none;
-  
+
 }
 
 .x__wins {
@@ -300,13 +300,13 @@ body {
     text-transform: uppercase;
     color: #A8BFC9;
     margin-bottom: 16px;
-} 
+}
 
 .x__wins-block {
     display: flex;
     column-gap: 9px;
     margin-bottom: 24px;
-} 
+}
 
 .x__wins-title {
     font-size: 24px;
@@ -315,12 +315,12 @@ body {
     letter-spacing: 1.5px;
     text-transform: uppercase;
     color: #31C3BD;
-} 
+}
 
 .x__wins-buttons {
     display: flex;
     column-gap: 16px;
-} 
+}
 
 .quit {
     height: 52px;
@@ -335,7 +335,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 1px;
     text-align: center;
-} 
+}
 
 .next__round {
     height: 52px;
@@ -360,7 +360,7 @@ body {
     top: 0;
     left: 0;
     display: none;
-  
+
 }
 
 .o__wins {
@@ -385,13 +385,13 @@ body {
     text-transform: uppercase;
     color: #A8BFC9;
     margin-bottom: 16px;
-} 
+}
 
 .o__wins-block {
     display: flex;
     column-gap: 9px;
     margin-bottom: 24px;
-} 
+}
 
 .o__wins-title {
     font-size: 24px;
@@ -400,12 +400,13 @@ body {
     letter-spacing: 1.5px;
     text-transform: uppercase;
     color: #F2B137;
-} 
+}
 
-.o__wins-buttons, .tie__buttons {
+.o__wins-buttons,
+.tie__buttons {
     display: flex;
     column-gap: 16px;
-} 
+}
 
 .tie__bcg {
     width: 100%;
@@ -416,7 +417,7 @@ body {
     left: 0;
     display: none;
 
-} 
+}
 
 .tie__content {
     height: 228px;
@@ -479,13 +480,13 @@ body {
     text-align: center;
     color: #A8BFC9;
     margin-bottom: 24px;
-    
+
 }
 
 .restart__buttons {
     display: flex;
     column-gap: 16px;
-} 
+}
 
 .restart__cancel {
     height: 52px;
@@ -499,7 +500,7 @@ body {
     line-height: 20px;
     letter-spacing: 1px;
     text-align: center;
-    color:#1A2A33;
+    color: #1A2A33;
 
 
 }
@@ -516,9 +517,6 @@ body {
     line-height: 20px;
     letter-spacing: 1px;
     text-align: center;
-    color:#1A2A33;
+    color: #1A2A33;
 
 }
-
-
-

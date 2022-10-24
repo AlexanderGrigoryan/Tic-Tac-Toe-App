@@ -11,9 +11,8 @@ const oForGame = document.querySelector('.o__for-game');
 const turnDefault = document.querySelector('.turn__default')
 const pickActionIcon = document.querySelectorAll('.pick__action-icon');
 const turnChange = document.querySelector(".game__turn");
-const quitFromWinX = document.querySelector('.x__quit');
-const quitFromWinO = document.querySelector('.o__quit');
-const quitFromTie = document.querySelector('.tie__quit');
+const quit = document.querySelectorAll('.quit');
+const nextRound = document.querySelectorAll('.next__round')
 const winXblock = document.querySelector('.x__wins');
 const winOblock = document.querySelector('.o__wins');
 const resultTieblock = document.querySelector('.tie__content');
@@ -41,18 +40,20 @@ const winCombination = [
     [2, 4, 6]
 ];
 
+let movesLeft = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+
 let playAllowed = true;
 let xPlayerMoves = [];
 let oPlayerMoves = [];
 let firstPlayer = true;
 let ifChoosen;
-let xPlayer = "Player X"; 
-let oPlayer = "Player O";
 let currentClass;
+let currentPlayer = "x";
 let isDraw;
 let xWinCount = 0;
 let oWinCount = 0;
 let tieCount = 0;
+
 
 function checkWin(player, playerMoves, winPlayerblock, playerWinsBcg){
     let playerWins;
@@ -61,22 +62,38 @@ function checkWin(player, playerMoves, winPlayerblock, playerWinsBcg){
             if(winningCombination){
                 for(let j = 0; j < 3; j++){
                     cellBody[combination[j]].innerHTML = `<img class="` + player + `__for-game" src="./img/icon-` + player + `-outline.svg" alt="">`;
+                    if (player == "x"){
+                        cellBody[combination[j]].style.background = "url(img/icon-x-40black.svg) rgb(49, 195, 189) no-repeat center";
+                    } else if (player == "o") {
+                        cellBody[combination[j]].style.background = "url(img/icon-o40black.svg) #F2B137 no-repeat center";
+                } 
+                if(winPlayerblock && playerWinsBcg){
+                    winPlayerblock.style.display = "flex"; 
+                    playerWinsBcg.style.display = "block";
                 }
-                winPlayerblock.style.display = "flex"; 
-                playerWinsBcg.style.display = "block";
+              
                 playerWins = true;
-            }
+            } 
+
+            } 
         })
-
-    return playerWins;
-}
-
-function restartButtons(){
-    restartBcg.style.display = "none"
-    restartContent.style.display = "none"
+       
+        return playerWins;
 }
 
 function play(player, opponent, position){
+    for(let i = 0; i < movesLeft.length; i++){
+        if(player === 'o'){
+            cellBody[movesLeft[i]].classList.add("x__icon-hover")
+           
+        } else {
+            cellBody[movesLeft[i]].classList.add("o__icon-hover")
+            } 
+               
+            }
+         
+    
+
     cellBody[position].innerHTML = `<img class="` + player + `__for-game" src="./img/icon-` + player + `40.svg" alt="">`;
     turnChange.innerHTML = `<img class="turn__change" src="./img/icon-` + opponent + `16.svg" alt=""> <p class="game__turn-text">TURN</p>`;
     turnDefault.style.display = "none";
@@ -98,27 +115,84 @@ function play(player, opponent, position){
             p2Score.innerText = oWinCount;
         }
     } 
-    // restartConfirm.addEventListener('click', (event) => {
-    //     cellBody[position].innerHTML = "";
-    //     restartButtons();
 
-    // });
+        cellBody[position].addEventListener('mouseover', (event) => {
+        cellBody[position].style.background = ""
+    }) 
+
+}
+    
+
+
+
+for(i = 0; i < quit.length; i++) { 
+quit[i].addEventListener('click', (event) => {
+    cellBody[i].innerHTML = "";
+    cellBody[i].style.background = "";
+    winXblock.style.display = "none";
+    xWinsBcg.style.display = "none";
+    mainPage.style.display = "flex";
+    actionGame.style.display = "none";
+    pickO.classList.remove('active');
+    pickX.classList.remove('active');
+    p1Score.innerText = xWinCount = 0;
+    p2Score.innerText = oWinCount = 0;
+    tieScore.innerText = tieCount = 0;
+    playAllowed = true;
+    restartButtons();
+});
+}
+
+restartConfirm.addEventListener('click', (event) => {
+    cellBody[i].innerHTML = "";
+    restartButtons();
+});
+
+for(i = 0; i < nextRound.length; i++){
+nextRound[i].addEventListener('click', (event) => {
+    xPlayerMoves = [];
+    oPlayerMoves = [];
+    cellBody[i].innerHTML = "";
+    cellBody[i].style.background = "";
+    winXblock.style.display = "none";
+    xWinsBcg.style.display = "none";
+    winOblock.style.display = "none";
+    oWinsBcg.style.display = "none";
+
+})
+  
+    
+    // resultTieblock.style.display = "none";
+    // tieResultBcg.style.display = "none";          // TO DO
+    
+}
+
+function restartButtons(){
+    restartBcg.style.display = "none"
+    restartContent.style.display = "none"
+    xPlayerMoves = [];
+    oPlayerMoves = [];
 }
 
 function board(i){
+    const index = movesLeft.findIndex((num) => num === i )
+    cellBody[movesLeft[index]].classList.remove("x__icon-hover")
+    cellBody[movesLeft[index]].classList.remove("o__icon-hover")
+
     if(playAllowed && cellBody[i] && firstPlayer && (cellBody[i].childElementCount === 0)){
-                firstPlayer = false;
+                movesLeft.splice(index, 1)
                 play('x', 'o', i);
+                firstPlayer = false;
                 
             } else if (playAllowed && firstPlayer === false) {
             if(cellBody[i].childElementCount === 0){
-                firstPlayer = true;
+                movesLeft.splice(index, 1)
+
                 play('o', 'x', i);
+                firstPlayer = true;
             }
         }
 }
-
-
 
 pickX.addEventListener('click', function (event){
     ifChoosen = true;
@@ -140,29 +214,11 @@ multiplayerBtn.addEventListener('click', (event) => {
 });
 
 for(let i = 0; i < 9; i++){
+    cellBody[movesLeft[i]].classList.add("x__icon-hover")
     cellBody[i].addEventListener('click', (event) => {
-            board(i);         
+        board(i);
+
 });
-
-quitFromWinX.addEventListener('click', (event) => {
-        playAllowed = false;
-    	winXblock.style.display = "none";
-        xWinsBcg.style.display = "none";
-});
-
-quitFromWinO.addEventListener('click', (event) => {
-    playAllowed = false;
-    winOblock.style.display = "none";
-    oWinsBcg.style.display = "none";
-});
-
-quitFromTie.addEventListener('click', (event) => {
-    playAllowed = false;
-    resultTieblock.style.display = "none";
-    tieResultBcg.style.display = "none";
-});
-
-
 
 restartBtn.addEventListener('click', (event) => {
     restartBcg.style.display = "block"

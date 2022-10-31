@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./css/style.css">
@@ -21,10 +20,27 @@
                 <h1 class="pick__title">PICK PLAYER 1’S MARK</h1>
                 <div class="pick__action">
                     <button class="pick__action-btn" id="pick__btn-x">
-                        <img class="pick__action-icon" src="./img/icon-x32.svg" alt="">
+                        <svg class="pick__action-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32px" height="32px" 
+                            viewBox="0 0 32 32" version="1.1"><g id="surface1"><path class="active" stroke="none" fill-rule="evenodd"
+                            fill="#A8A8A8" fill-opacity="1" d="M 7.5 0.574219 L 16 9.074219 L 
+                            24.5 0.574219 C 25.085938 -0.0117188 26.035156 -0.0117188 26.621094 0.574219 L 31.425781 5.378906 C 
+                            32.011719 5.964844 32.011719 6.914062 31.425781 7.5 L 22.925781 16 L 31.425781 24.5 C 32.011719 
+                            25.085938 32.011719 26.035156 31.425781 26.621094 L 26.621094 31.425781 C 26.035156 32.011719 
+                            25.085938 32.011719 24.5 31.425781 L 16 22.925781 L 7.5 31.425781 C 6.914062 32.011719 5.964844 
+                            32.011719 5.378906 31.425781 L 0.574219 26.621094 C -0.0117188 26.035156 -0.0117188 25.085938 
+                            0.574219 24.5 L 9.074219 16 L 0.574219 7.5 C -0.0117188 6.914062 -0.0117188 5.964844 0.574219 
+                            5.378906 L 5.378906 0.574219 C 5.964844 -0.0117188 6.914062 -0.0117188 7.5 0.574219 Z M 7.5 0.574219"/></g>
+                        </svg>
                     </button>
                     <button class="pick__action-btn" id="pick__btn-o">
-                        <img class="pick__action-icon" src="./img/icon-o32.svg" alt="">
+                        <svg class="pick__action-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32px" height="32px" 
+                            viewBox="0 0 32 32" version="1.1"><g id="surface1"><path class="active" stroke="none" fill-rule="evenodd"
+                            fill="#A8A8A8" fill-opacity="1" d="M 16 0 C 24.835938 0 32 7.164062 
+                            32 16 C 32 24.835938 24.835938 32 16 32 C 7.164062 32 0 24.835938 0 16 C 0 7.164062 7.164062 0 16 
+                            0 Z M 16 9.480469 C 12.398438 9.480469 9.480469 12.398438 9.480469 16 C 9.480469 19.601562 12.398438 22.519531 
+                            16 22.519531 C 19.601562 22.519531 22.519531 19.601562 22.519531 16 C 22.519531 12.398438 19.601562 9.480469 
+                            16 9.480469 Z M 16 9.480469 "/></g>
+                        </svg>
                     </button>
                 </div>
                 <p class="pick__text">REMEMBER : X GOES FIRST</p>
@@ -49,17 +65,17 @@
                 </button>
             </header>
             <div class="game__cell">
-                <button class="cell__body"></button>
-                <button class="cell__body"></button>
-                <button class="cell__body"></button>
-                <button class="cell__body"></button>
-                <button class="cell__body"></button>
-                <button class="cell__body"></button>
-                <button class="cell__body"></button>
-                <button class="cell__body"></button>
-                <button class="cell__body"></button>
+                <button class="cell__body x__icon-hover"></button>
+                <button class="cell__body x__icon-hover"></button>
+                <button class="cell__body x__icon-hover"></button>
+                <button class="cell__body x__icon-hover"></button>
+                <button class="cell__body x__icon-hover"></button>
+                <button class="cell__body x__icon-hover"></button>
+                <button class="cell__body x__icon-hover"></button>
+                <button class="cell__body x__icon-hover"></button>
+                <button class="cell__body x__icon-hover"></button>
                 <div class="cell__results" id="results__p1">
-                    <p class="cell__results-text">x (p1)</p>
+                    <p class="cell__results-text" id="p1__text">x (p1)</p>
                     <p class="cell__results-score" id="p1__score">0</p>
                 </div>
                 <div class="cell__results" id="results__tie">
@@ -67,7 +83,7 @@
                     <p class="cell__results-score" id="tie__score">0</p>
                 </div>
                 <div class="cell__results" id="results__p2">
-                    <p class="cell__results-text">o (p2)</p>
+                    <p class="cell__results-text" id="p2__text">o (p2)</p>
                     <p class="cell__results-score" id="p2__score">0</p>
                 </div>
             </div>
@@ -76,7 +92,8 @@
                 <div class="x__wins">
                     <p class="x__wins-text">Player 1 wins!</p>
                     <div class="x__wins-block">
-                        <img src="./img/icon-x28.svg" alt="">
+                        <img class="icon__x-28" src="./img/icon-x28.svg" alt="">
+                        <img class="icon__x-64" src="./img/icon-x.svg" alt="">
                         <h2 class="x__wins-title">Takes the round</h2>
                     </div>
                     <div class="x__wins-buttons">
@@ -88,9 +105,10 @@
             <!-- PopUp for O wins -->
             <div class="o__wins-background">
                 <div class="o__wins">
-                    <p class="o__wins-text">Player 1 wins!</p>
+                    <p class="o__wins-text">Player 2 wins!</p>
                     <div class="o__wins-block">
-                        <img src="./img/icon-o28.svg" alt="">
+                        <img class="icon__o-28" src="./img/icon-o28.svg" alt="">
+                        <img class="icon__o-64" src="./img/icon-o.svg" alt="">
                         <h2 class="o__wins-title">Takes the round</h2>
                     </div>
                     <div class="o__wins-buttons">
@@ -123,5 +141,4 @@
     </main>
     <script src="./js/script.js"></script>
 </body>
-
 </html>

@@ -27,10 +27,13 @@ const restartBcg = document.querySelector('.restart__bcg');
 const restartContent = document.querySelector('.restart__content');
 const restartCancel = document.querySelector('.restart__cancel');
 const restartConfirm = document.querySelector('.restart__confirm');
-
+const p1ScoreChange = document.querySelector('#p1__text');
+const p2ScoreChange = document.querySelector('#p2__text');
+const p1winnerText = document.querySelector('.x__wins-text');
+const p2winnerText = document.querySelector('.o__wins-text');
 
 const winCombination = [
-    [0, 1, 2],
+    [0, 1, 2], 
     [3, 4, 5],
     [6, 7, 8],
     [0, 3, 6],
@@ -40,208 +43,220 @@ const winCombination = [
     [2, 4, 6]
 ];
 
-let movesLeft = [0, 1, 2, 3, 4, 5, 6, 7, 8]
-
-let firstPlayer = true;
 let playAllowed = true;
+let firstPlayerMove = true;
 let xPlayerMoves = [];
 let oPlayerMoves = [];
-let ifChoosen;
-let currentClass;
-let currentPlayer;
-let isDraw;
+let xScoreElement;
+let oScoreElement;
+let ifChosen;
 let xWinCount = 0;
 let oWinCount = 0;
 let tieCount = 0;
 
-
-// Game start process
-pickX.addEventListener('click', function (event) {
-    ifChoosen = true;
+pickX.addEventListener('click', function (event){
+    ifChosen = true;
     pickX.classList.add('active');
     pickO.classList.remove('active');
-    currentPlayer = "x";
+    xScoreElement = p1Score;
+    oScoreElement = p2Score;
+    p1ScoreChange.innerHTML = "X (P1)"
+    p2ScoreChange.innerHTML = "O (P2)"
+    p1winnerText.innerHTML = "PLAYER 1 WINS"
+    p2winnerText.innerHTML = "PLAYER 2 WINS"
 });
 
-pickO.addEventListener('click', function (event) {
-    ifChoosen = true;
+pickO.addEventListener('click', function (event){
+    ifChosen = true;
     pickO.classList.add('active');
     pickX.classList.remove('active');
-    currentPlayer = "o";
+    oScoreElement = p2Score;
+    xScoreElement = p1Score;
+    p1ScoreChange.innerHTML = "X (P2)"
+    p2ScoreChange.innerHTML = "O (P1)"
+    p1winnerText.innerHTML = "PLAYER 2 WINS"
+    p2winnerText.innerHTML = "PLAYER 1 WINS"
 });
 
 multiplayerBtn.addEventListener('click', (event) => {
-    if (ifChoosen) {
+    if(ifChosen){
         mainPage.style.display = "none";
         actionGame.style.display = "block";
     }
 });
 
+for(let i = 0; i < 9; i++){
+    cellBody[i].addEventListener('click', (event) => {
+            board(i);  
+});
 
-function checkWin() {
-    winCombination.map(combination => {
-        let playerMoves;
-        if (currentPlayer === "x") {
-            playerMoves = xPlayerMoves;
-        } else if (currentPlayer === "o") {
-            playerMoves = oPlayerMoves;
-        }
-        let winningCombination = combination.every((number) => playerMoves.includes(number));
-        if (winningCombination) {
-            for (let j = 0; j < 3; j++) {
-                if (currentPlayer == "x") {
-                    cellBody[combination[j]].innerHTML = `<img class="x__for-game" src="./img/icon-x-outline.svg" alt="">`;
-                    cellBody[combination[j]].style.background = "url(img/icon-x-40black.svg) rgb(49, 195, 189) no-repeat center";
-                } else if (currentPlayer == "o") {
-                    cellBody[combination[j]].innerHTML = `<img class="o__for-game" src="./img/icon-o-outline.svg" alt="">`;
-                    cellBody[combination[j]].style.background = "url(img/icon-o40black.svg) #F2B137 no-repeat center";
-                };
-
-                if (winningCombination && currentPlayer == "x") {
-                    winXblock.style.display = "flex";
-                    xWinsBcg.style.display = "block";
-                } else if (winningCombination && currentPlayer == "o") {
-                    winOblock.style.display = "flex";
-                    oWinsBcg.style.display = "block";
-                }
+function board(i){
+    if (playAllowed){
+        if(firstPlayerMove && (cellBody[i].childElementCount === 0)){
+            play('x', 'o');        
+            firstPlayerMove = false;
+        } else if (!firstPlayerMove && cellBody[i].childElementCount === 0) {   
+                play('o', 'x');
+                firstPlayerMove = true;
             }
-        }
-    })
-    isTie();
-
-    function isTie() {
-        for (let i = 0; i < winCombination.length; i++) {
-            if (xPlayerMoves.length === 5 && oPlayerMoves.length === 4) {
-                resultTieblock.style.display = "flex";
-                tieResultBcg.style.display = "block";
-            }
-        }
     }
+}
 
-
-    function play(player, opponent, position) {
-        for (let i = 0; i < movesLeft.length; i++) {
-            if (player === 'x') {
-                cellBody[movesLeft[i]].classList.add("x__icon-hover")
-
-            } else {
-                cellBody[movesLeft[i]].classList.add("o__icon-hover")
-            }
-
+function play(player, opponent){
+    cellBody[i].innerHTML = `<img class="` + player + `__for-game" src="./img/icon-` + player + `40.svg" alt="">`;
+    turnChange.innerHTML = `<img class="turn__change" src="./img/icon-` + opponent + `16.svg" alt=""> <p class="game__turn-text">TURN</p>`;
+    turnDefault.style.display = "none";
+    let winPlayerblock, playerWinsBcg;
+    if(player == 'x'){
+        xPlayerMoves.push(i);
+        changeHover();
+        winPlayerblock = winXblock;
+        playerWinsBcg = xWinsBcg;
+        if (checkWin(player, xPlayerMoves, winPlayerblock, playerWinsBcg)){
+            xWinCount++;
+            xScoreElement.innerText = xWinCount;
         }
+    } else {
+        oPlayerMoves.push(i);
+        changeHover();
+        winPlayerblock = winOblock;
+        playerWinsBcg = oWinsBcg;
+        if (checkWin(player, oPlayerMoves, winPlayerblock, playerWinsBcg)){
+            oWinCount++;
+            oScoreElement.innerText = oWinCount;
+        } 
+    } 
+}
 
-        cellBody[position].innerHTML = `<img class="` + player + `__for-game" src="./img/icon-` + player + `40.svg" alt="">`;
-        turnChange.innerHTML = `<img class="turn__change" src="./img/icon-` + opponent + `16.svg" alt=""> <p class="game__turn-text">TURN</p>`;
-        turnDefault.style.display = "none";
-        let winPlayerblock, playerWinsBcg;
-        if (player == 'x') {
-            xPlayerMoves.push(position);
-            winPlayerblock = winXblock;
-            playerWinsBcg = xWinsBcg;
-            if (checkWin(player, xPlayerMoves, winPlayerblock, playerWinsBcg)) {
-                xWinCount++;
-                p1Score.innerText = xWinCount;
+function checkWin(player, playerMoves, winPlayerblock, playerWinsBcg){
+    let playerWins;
+    winCombination.map(combination => {
+        let winningCombination = combination.every((number) => playerMoves.includes(number));    
+            if(winningCombination){
+                for(let j = 0; j < 3; j++){
+                    cellBody[combination[j]].innerHTML = `<img class="` + player + `__for-game" src="./img/icon-` + player + `-outline.svg" alt="">`;
+                    if(window.screen.width < 768){
+                        if (player == "x"){
+                            cellBody[combination[j]].style.background = "url(img/icon-x-40black.svg) rgb(49, 195, 189) no-repeat center";
+                        } else if (player == "o") {
+                            cellBody[combination[j]].style.background = "url(img/icon-o-40black.svg) #F2B137 no-repeat center";
+                        }
+                    } else {
+                        if (player == "x"){
+                            cellBody[combination[j]].style.background = "url(img/icon-x-64black.svg) rgb(49, 195, 189) no-repeat center";
+                        } else if (player == "o") {
+                            cellBody[combination[j]].style.background = "url(img/icon-o-64black.svg) #F2B137 no-repeat center";
+                            
+                        }
+                    }
+                }
+                winPlayerblock.style.display = "flex"; 
+                playerWinsBcg.style.display = "block";
+                playerWins = true;
+            }
+        })
+        if (!playerWins && checkDraw()){
+            tieCount++;
+            tieScore.innerText = tieCount;
+            resultTieblock.style.display = "flex"; 
+            tieResultBcg.style.display = "block";
+        };
+    return playerWins;
+}
+
+function checkDraw(){
+    return xPlayerMoves.length == 5 && oPlayerMoves.length == 4;
+}
+
+/* Restart button functionality in the corner */
+
+restartBtn.addEventListener('click', (event) => {
+    restartBcg.style.display = "block";
+    restartContent.style.display = "flex";
+})
+
+restartCancel.addEventListener('click', (event) => {
+    clearMoves();
+})
+
+restartConfirm.addEventListener('click', (event) => {
+    cellBody[i].innerHTML = "";
+    clearMoves();
+    clearScore();
+    setInitialConditions();
+});
+
+/* General functionality */
+
+function changeHover() {
+    for(let l = 0; l < cellBody.length; l++){
+        if(!(xPlayerMoves.includes(l) || oPlayerMoves.includes(l))){
+            if(firstPlayerMove){
+                cellBody[l].classList.add("o__icon-hover")
+                cellBody[l].classList.remove("x__icon-hover") 
+            } else {
+                cellBody[l].classList.add("x__icon-hover") 
+                cellBody[l].classList.remove("o__icon-hover")
             }
         } else {
-            oPlayerMoves.push(position);
-            winPlayerblock = winOblock;
-            playerWinsBcg = oWinsBcg;
-            if (checkWin(player, oPlayerMoves, winPlayerblock, playerWinsBcg)) {
-                oWinCount++;
-                p2Score.innerText = oWinCount;
-            }
+            cellBody[l].classList.remove("o__icon-hover")
+            cellBody[l].classList.remove("x__icon-hover") 
         }
-
-        cellBody[position].addEventListener('mouseover', (event) => {
-            cellBody[position].style.background = ""
-        })
-
     }
+}
 
-    for (i = 0; i < quit.length; i++) {
-        quit[i].addEventListener('click', (event) => {
-            cellBody[i].innerHTML = "";
-            cellBody[i].style.background = "";
-            winXblock.style.display = "none";
-            xWinsBcg.style.display = "none";
-            mainPage.style.display = "flex";
-            actionGame.style.display = "none";
-            pickO.classList.remove('active');
-            pickX.classList.remove('active');
-            p1Score.innerText = xWinCount = 0;
-            p2Score.innerText = oWinCount = 0;
-            tieScore.innerText = tieCount = 0;
-            playAllowed = true;
-            restartButtons();
-        });
-    }
+function clearMoves(){
+    restartBcg.style.display = "none"
+    restartContent.style.display = "none"
+    xPlayerMoves = [];
+    oPlayerMoves = [];
+}
 
-    restartConfirm.addEventListener('click', (event) => {
-        cellBody[i].innerHTML = "";
-        restartButtons();
+function clearScore(){
+    p1Score.innerText = xWinCount = 0;
+    p2Score.innerText = oWinCount = 0;
+    tieScore.innerText = tieCount = 0;
+}
+
+function navToMain(){
+    mainPage.style.display = "flex";
+    actionGame.style.display = "none";
+    pickO.classList.remove('active');
+    pickX.classList.remove('active');
+}
+
+function clearBoardElements(){
+    cellBody[i].innerHTML = "";
+    cellBody[i].style.background = "";
+    winXblock.style.display = "none";
+    xWinsBcg.style.display = "none";
+    winOblock.style.display = "none";
+    oWinsBcg.style.display = "none";
+    resultTieblock.style.display = "none";
+    tieResultBcg.style.display = "none"; 
+}
+
+function setInitialConditions(){
+    playAllowed = true;
+    firstPlayerMove = true;
+    turnChange.innerHTML = `<img class="turn__change" src="./img/icon-x16.svg" alt=""> <p class="game__turn-text">TURN</p>`;
+}
+
+/* Quit and Next Round buttons after a round is finished */
+
+for (let k = 0; k < quit.length; k++) {
+    quit[k].addEventListener('click', (event) => {
+        navToMain();
+        clearMoves();
+        clearScore();
+        clearBoardElements()
+        setInitialConditions();
     });
 
-    for (i = 0; i < nextRound.length; i++) {
-        nextRound[i].addEventListener('click', (event) => {
-            xPlayerMoves = [];
-            oPlayerMoves = [];
-            cellBody[i].innerHTML = "";
-            cellBody[i].style.background = "";
-            winXblock.style.display = "none";
-            xWinsBcg.style.display = "none";
-            winOblock.style.display = "none";
-            oWinsBcg.style.display = "none";
-
-        })
-
-
-        // resultTieblock.style.display = "none";
-        // tieResultBcg.style.display = "none";          // TO DO
-
-    }
-
-    function restartButtons() {
-        restartBcg.style.display = "none"
-        restartContent.style.display = "none"
-        xPlayerMoves = [];
-        oPlayerMoves = [];
-    }
-
-    function board(i) {
-        const index = movesLeft.findIndex((num) => num === i)
-        cellBody[movesLeft[index]].classList.remove("x__icon-hover")
-        cellBody[movesLeft[index]].classList.remove("o__icon-hover")
-
-        if (playAllowed && cellBody[i] && firstPlayer && (cellBody[i].childElementCount === 0)) {
-            movesLeft.splice(index, 1)
-            play('x', 'o', i);
-            firstPlayer = false;
-
-        } else if (playAllowed && firstPlayer === false) {
-            if (cellBody[i].childElementCount === 0) {
-                movesLeft.splice(index, 1)
-
-                play('o', 'x', i);
-                firstPlayer = true;
-            }
-        }
-    }
-
-    for (let i = 0; i < 9; i++) {
-        cellBody[movesLeft[i]].classList.add("x__icon-hover")
-        cellBody[i].addEventListener('click', (event) => {
-            board(i);
-
-        });
-
-        restartBtn.addEventListener('click', (event) => {
-            restartBcg.style.display = "block"
-            restartContent.style.display = "flex"
-        })
-
-        restartCancel.addEventListener('click', (event) => {
-            restartButtons();
-        })
-
-    }
+    nextRound[k].addEventListener('click', (event) => {
+        clearBoardElements();
+        clearMoves();
+        setInitialConditions();
+    });
+}
 }

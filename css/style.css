@@ -39,8 +39,8 @@ body {
 }
 
 .player__pick {
-    height: 205px;
     width: 327px;
+    height: 205px;
     background: #1F3641;
     box-shadow: inset 0px -8px 0px #10212A;
     border-radius: 15px;
@@ -58,8 +58,8 @@ body {
 }
 
 .pick__action {
-    height: 72px;
     width: 279px;
+    height: 72px;
     margin: 24px 24px 17px;
     border-radius: 10px;
     background: #1A2A33;
@@ -69,8 +69,8 @@ body {
 }
 
 .pick__action-btn {
-    height: 54px;
     width: 132px;
+    height: 54px;
     border-radius: 10px;
     background: transparent;
     border: 0;
@@ -81,14 +81,12 @@ body {
     border: 1px solid #A8BFC9;
 }
 
-.pick__action-btn.active.path {
+.pick__action-btn.active path {
     fill: #1A2A33;
 }
 
-
 .pick__action-icon {
     pointer-events: none;
-    /* fill: red; */
 }
 
 .pick__icon {
@@ -101,7 +99,7 @@ body {
     line-height: 18px;
     letter-spacing: 0.875px;
     text-align: center;
-    color: #A8BFC9;
+    color: rgba(168, 191, 201, 0.5);
 }
 
 .new__game-buttons {
@@ -113,8 +111,8 @@ body {
 }
 
 .new__game {
-    height: 56px;
     width: 327px;
+    height: 56px;
     border-radius: 15px;
     box-shadow: inset 0px -8px 0px #CC8B13;
     background: #F2B137;
@@ -131,10 +129,43 @@ body {
     box-shadow: inset 0px -8px 0px #118C87;
 }
 
+/*--------- MEDIA FOR THE MAIN PAGE --------*/
+
+@media screen and (min-width: 768px) {
+    .header {
+        margin: 0 0 40px;
+    }
+
+    .player__pick {
+        width: 460px;
+        margin-bottom: 40px;
+    }
+
+    .pick__action {
+        width: 412px;
+    }
+
+    .pick__action-btn {
+        width: 198px;
+    }
+
+    .new__game-buttons {
+        row-gap: 20px;
+    }
+
+    .new__game {
+        width: 460px;
+        height: 67px;
+        font-size: 20px;
+        line-height: 25px;
+        letter-spacing: 1.25px;
+    }
+}
 
 /*------------ NEW GAME PAGE ----------------*/
 
 .active__game {
+    margin: 0 auto;
     padding: 0 24px;
     display: none;
 }
@@ -162,8 +193,8 @@ body {
 }
 
 .game__turn {
-    height: 40px;
     width: 96px;
+    height: 40px;
     border-radius: 5px;
     background: #1F3641;
     box-shadow: inset 0px -4px 0px #10212A;
@@ -188,8 +219,8 @@ body {
 }
 
 .game__return {
-    height: 40px;
     width: 40px;
+    height: 40px;
     border-radius: 5px;
     box-shadow: inset 0px -4px 0px #6B8997;
     background: #A8BFC9;
@@ -207,8 +238,8 @@ body {
 }
 
 .cell__body {
-    height: 96px;
     width: 96px;
+    height: 96px;
     border-radius: 10px;
     box-shadow: inset 0px -8px 0px #10212A;
     background: #1F3641;
@@ -226,8 +257,8 @@ body {
 }
 
 .cell__results {
-    height: 64px;
     width: 96px;
+    height: 64px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -275,16 +306,16 @@ body {
     top: 0;
     left: 0;
     display: none;
-
 }
 
 .x__wins {
     height: 228px;
-    width: 375px;
+    width: 100%;
     background: #1F3641;
     position: absolute;
     left: 0px;
-    top: 220px;
+    top: 50%;
+    transform: translateY(-50%);
     display: none;
     flex-direction: column;
     justify-content: center;
@@ -322,13 +353,17 @@ body {
     column-gap: 16px;
 }
 
+.icon__x-64, 
+.icon__o-64 {
+    display: none;
+}
+
 .quit {
-    height: 52px;
     width: 76px;
+    height: 52px;
     border-radius: 10px;
     background: #A8BFC9;
     box-shadow: inset 0px -4px 0px #6B8997;
-
     font-size: 16px;
     font-weight: 700;
     line-height: 20px;
@@ -338,12 +373,11 @@ body {
 }
 
 .next__round {
-    height: 52px;
     width: 146px;
+    height: 52px;
     border-radius: 10px;
     background: #F2B137;
     box-shadow: inset 0px -4px 0px #CC8B13;
-
     font-size: 16px;
     font-weight: 700;
     line-height: 20px;
@@ -360,16 +394,16 @@ body {
     top: 0;
     left: 0;
     display: none;
-
 }
 
 .o__wins {
     height: 228px;
-    width: 375px;
+    width: 100%;
     background: #1F3641;
     position: absolute;
     left: 0px;
-    top: 220px;
+    top: 50%;
+    transform: translateY(-50%);
     display: none;
     flex-direction: column;
     justify-content: center;
@@ -416,21 +450,20 @@ body {
     top: 0;
     left: 0;
     display: none;
-
 }
 
 .tie__content {
     height: 228px;
-    width: 375px;
+    width: 100%;
     background: #1F3641;
     position: absolute;
     left: 0px;
-    top: 220px;
+    top: 50%;
+    transform: translateY(-50%);
     display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
 
 .tie__title {
@@ -443,9 +476,6 @@ body {
     margin-bottom: 24px;
     color: #A8BFC9;
 }
-
-
-
 
 .restart__bcg {
     width: 100%;
@@ -468,7 +498,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
 
 .restart__title {
@@ -480,7 +509,6 @@ body {
     text-align: center;
     color: #A8BFC9;
     margin-bottom: 24px;
-
 }
 
 .restart__buttons {
@@ -489,8 +517,8 @@ body {
 }
 
 .restart__cancel {
-    height: 52px;
     width: 139px;
+    height: 52px;
     border-radius: 10px;
     background: #A8BFC9;
     box-shadow: inset 0px -4px 0px #6B8997;
@@ -501,13 +529,11 @@ body {
     letter-spacing: 1px;
     text-align: center;
     color: #1A2A33;
-
-
 }
 
 .restart__confirm {
-    height: 52px;
     width: 151px;
+    height: 52px;
     border-radius: 10px;
     background: #F2B137;
     box-shadow: inset 0px -4px 0px #CC8B13;
@@ -518,5 +544,127 @@ body {
     letter-spacing: 1px;
     text-align: center;
     color: #1A2A33;
-
 }
+
+@media screen and (min-width: 768px) {
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .x__for-game {
+        width: 64px;
+        height: 64px;
+    }
+
+    .o__for-game {
+        width: 64px;
+        height: 64px;
+    }
+
+    .game__header {
+        padding-top: 0;
+        margin-bottom: 20px;
+    }
+
+    .game__turn {
+        width: 140px;
+        height: 52px;
+        border-radius: 10px;
+        column-gap: 13px;
+    }
+
+    .game__turn-text {
+        font-size: 16px;
+        line-height: 20px;
+        letter-spacing: 1px;
+    }
+
+    .turn__default, .turn__change {
+        width: 20px;
+        height: 20px;
+    }
+
+    .game__return {
+        width: 52px;
+        height: 52px;
+        border-radius: 10px;
+    }
+
+    .return__logo {
+        width: 20px;
+        height: 20px;
+    }
+
+    .cell__body {
+        width: 140px;
+        height: 140px;
+        border-radius: 15px;
+    }
+
+    .cell__results {
+        width: 140px;
+        height: 72px;
+        border-radius: 15px;
+    }
+
+    .cell__results-text {
+        font-size: 14px;
+        line-height: 17.64px;
+        letter-spacing: 0.88px;
+    }
+
+    .cell__results-score {
+        font-size: 24px;
+        line-height: 30.24px;
+        letter-spacing: 1.5px;
+    }
+
+    .x__wins,
+    .o__wins, 
+    .tie__content, 
+    .restart__content {
+        min-height: 228px;
+        width: 100%;
+    }
+
+    .x__wins-text, 
+    .o__wins-text {
+        font-size: 16px;
+        line-height: 20.16px;
+        letter-spacing: 1px;
+        margin-bottom: 23px;
+    }
+
+    .x__wins-block, 
+    .o__wins-block {
+        display: flex;
+        column-gap: 24px;
+    }
+
+    .icon__x-28,
+    .icon__o-28 {
+        display: none;
+    }
+
+    .icon__x-64, 
+    .icon__o-64 {
+        display: block;
+    }
+    
+    .x__wins-title, 
+    .o__wins-title, 
+    .tie__title, 
+    .restart__title {
+        font-size: 40px;
+        line-height: 50.4px;
+        letter-spacing: 2.5px;
+    }
+
+    .tie__title {
+        margin-bottom: 31px;
+    }
+   }
+
